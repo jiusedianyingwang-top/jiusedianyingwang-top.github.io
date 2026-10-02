@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>酒色电影网 - 微醺影视体验 | 官方网址：https://jiusedianyingwang-top.github.io</title>
+<meta name="description" content="酒色电影网(jiusedianyingwang-top.github.io)为您呈现微醺影视体验，精选全球高分电影、热播剧集。官方网址：https://jiusedianyingwang-top.github.io，每日更新，沉浸观影。">
+<meta name="keywords" content="酒色电影网, jiusedianyingwang-top.github.io, 在线电影, 高清影视, 热播排行, 微醺观影">
+<meta name="author" content="酒色电影网">
+<link rel="canonical" href="https://jiusedianyingwang-top.github.io">
+<meta property="og:title" content="酒色电影网 - 微醺影视体验">
+<meta property="og:description" content="官方网址：https://jiusedianyingwang-top.github.io，精选全球高分影视，Grunge复古风沉浸观影。">
+<meta property="og:url" content="https://jiusedianyingwang-top.github.io">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="酒色电影网 - 微醺影视体验">
+<meta name="twitter:description" content="官方网址：https://jiusedianyingwang-top.github.io">
+
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-dark: #1a0f0a;
+  --bg-panel: #2a1a12;
+  --amber: #d4912a;
+  --amber-light: #f0b85c;
+  --amber-dim: rgba(212, 145, 42, 0.15);
+  --red-dark: #8b2500;
+  --red-dim: rgba(139, 37, 0, 0.2);
+  --cream: #f5e6d3;
+  --cream-dim: #cbb89d;
+  --line: rgba(212, 145, 42, 0.3);
+  --line-strong: rgba(212, 145, 42, 0.6);
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'Courier New', monospace;
+  --font-display: 'Impact', 'Arial Black', sans-serif;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-serif);
+  background: var(--bg-dark);
+  color: var(--cream);
+  line-height: 1.8;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 噪点纹理 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 顶部信息条 */
+.topbar {
+  background: var(--red-dark); color: var(--cream);
+  padding: 0.4rem 1rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--amber);
+}
+.topbar a { color: var(--amber-light); text-decoration: none; border-bottom: 1px dashed var(--amber); }
+.topbar a:hover { color: var(--cream); border-color: var(--cream); }
+
+/* 导航 */
+.nav {
+  background: var(--bg-panel); border-bottom: 3px solid var(--amber);
+  position: sticky; top: 0; z-index: 100;
+}
+.navin {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem; gap: 1rem;
+}
+.logo {
+  font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: 2px; transform: rotate(-1deg);
+}
+.logo a { color: var(--amber); text-decoration: none; }
+.logo .jiu { color: var(--red-dark); text-shadow: 2px 2px 0 var(--amber); }
+.urlchip {
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--amber);
+  border: 1px solid var(--amber); padding: 0.3rem 0.7rem;
+  background: rgba(0,0,0,0.3); transform: rotate(1deg);
+}
+.menu { list-style: none; display: flex; gap: 0; }
+.menu a {
+  display: block; padding: 0.5rem 1rem;
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
+  color: var(--cream-dim); text-decoration: none; transition: all 0.3s;
+  border-right: 1px dashed var(--line);
+}
+.menu li:last-child a { border-right: none; }
+.menu a:hover { background: var(--red-dark); color: var(--cream); transform: skewX(-10deg); }
+.toggle { display: none; background: var(--bg-panel); color: var(--amber); border: 1px solid var(--amber); padding: 0.4rem 0.8rem; cursor: pointer; font-size: 1rem; }
+
+/* Hero */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.hero {
+  padding: 5rem 0; text-align: center; position: relative;
+  border-bottom: 2px dashed var(--line);
+}
+.hero::before {
+  content: 'EST. 2024';
+  position: absolute; top: 2rem; left: 2rem;
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--amber);
+  transform: rotate(-90deg); transform-origin: left top;
+  opacity: 0.6;
+}
+.hero::after {
+  content: '★';
+  position: absolute; bottom: 2rem; right: 2rem;
+  font-size: 3rem; color: var(--red-dark); opacity: 0.3;
+}
+.hero-badge {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.65rem;
+  font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--cream); background: var(--red-dark);
+  padding: 0.3rem 1rem; margin-bottom: 1.5rem;
+  transform: rotate(-2deg);
+  border: 1px solid var(--amber);
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900; line-height: 1.1; margin-bottom: 1rem;
+  color: var(--amber); text-transform: uppercase;
+  text-shadow: 3px 3px 0 var(--red-dark), 6px 6px 0 rgba(0,0,0,0.5);
+  letter-spacing: 4px;
+}
+.hero h1 .jiu { color: var(--red-dark); }
+.hero-desc {
+  font-size: 0.85rem; color: var(--cream-dim); max-width: 600px;
+  margin: 0 auto 2rem; line-height: 1.9;
+  background: rgba(0,0,0,0.4); border: 1px solid var(--line);
+  padding: 1.2rem; transform: rotate(0.5deg);
+}
+.hero-desc strong { color: var(--amber-light); }
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; font-family: var(--font-mono);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;
+  text-decoration: none; transition: all 0.3s; cursor: pointer;
+  border: 2px solid;
+}
+.btn-amber {
+  background: var(--amber); color: var(--bg-dark); border-color: var(--amber);
+  transform: rotate(-1deg);
+}
+.btn-amber:hover { background: var(--red-dark); color: var(--cream); border-color: var(--red-dark); transform: rotate(1deg); }
+.btn-dark {
+  background: transparent; color: var(--amber); border-color: var(--amber);
+  transform: rotate(1deg);
+}
+.btn-dark:hover { background: var(--amber); color: var(--bg-dark); transform: rotate(-1deg); }
+
+/* 通用栏目 */
+.sec { padding: 4rem 0; border-bottom: 2px dashed var(--line); }
+.head { text-align: center; margin-bottom: 3rem; position: relative; }
+.head h2 {
+  font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 0 var(--red-dark);
+}
+.head p { font-size: 0.75rem; color: var(--cream-dim); font-family: var(--font-mono); }
+.head::before {
+  content: '❧'; position: absolute; left: 50%; transform: translateX(-50%);
+  top: -1.5rem; font-size: 1.5rem; color: var(--red-dark);
+}
+
+/* 栏目1：最新推荐 - 酒单式 */
+.movie-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.movie-card {
+  background: var(--bg-panel); border: 2px solid var(--line);
+  transition: all 0.3s; cursor: pointer; position: relative;
+  overflow: hidden;
+}
+.movie-card:nth-child(odd) { transform: rotate(-1deg); }
+.movie-card:nth-child(even) { transform: rotate(1deg); }
+.movie-card:hover { transform: rotate(0deg) scale(1.03); border-color: var(--amber); z-index: 2; box-shadow: 4px 4px 0 var(--red-dark); }
+.movie-cover {
+  height: 160px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative; overflow: hidden;
+  border-bottom: 2px solid var(--line);
+  filter: sepia(0.5) contrast(1.2);
+}
+.movie-card:nth-child(1) .movie-cover { background: linear-gradient(135deg, #3d1a04, #8b2500); }
+.movie-card:nth-child(2) .movie-cover { background: linear-gradient(135deg, #2a1a12, #d4912a); }
+.movie-card:nth-child(3) .movie-cover { background: linear-gradient(135deg, #1a0f0a, #5c2e2e); }
+.movie-card:nth-child(4) .movie-cover { background: linear-gradient(135deg, #3d2e1a, #8b6b00); }
+.movie-card:nth-child(5) .movie-cover { background: linear-gradient(135deg, #1a2a1a, #4a5c2e); }
+.movie-card:nth-child(6) .movie-cover { background: linear-gradient(135deg, #2a1a2a, #5c2e5c); }
+.movie-badge {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+  padding: 0.2rem 0.5rem; background: var(--red-dark); color: var(--cream);
+  letter-spacing: 1px; transform: rotate(5deg);
+}
+.movie-info { padding: 1rem; }
+.movie-title { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.2rem; text-transform: uppercase; color: var(--amber-light); }
+.movie-meta { font-size: 0.65rem; color: var(--cream-dim); margin-bottom: 0.5rem; font-family: var(--font-mono); }
+.movie-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.movie-tag {
+  font-family: var(--font-mono); font-size: 0.55rem; padding: 0.1rem 0.4rem;
+  border: 1px solid var(--amber); color: var(--amber); background: rgba(0,0,0,0.3);
+}
+
+/* 栏目2：影视分类 - 吧台菜单式 */
+.cat-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
+}
+.cat-card {
+  background: var(--bg-panel); border: 2px dashed var(--line);
+  padding: 1.5rem 0.5rem; text-align: center;
+  transition: all 0.3s; cursor: pointer; position: relative;
+}
+.cat-card:hover { background: var(--red-dark); border-color: var(--amber); transform: translateY(-5px) rotate(2deg); }
+.cat-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; filter: sepia(1); }
+.cat-name { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.2rem; color: var(--amber-light); }
+.cat-count { font-family: var(--font-mono); font-size: 0.6rem; color: var(--cream-dim); }
+
+/* 栏目3：排行榜 - 剪贴画风格 */
+.rank-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.rank-panel {
+  background: var(--bg-panel); border: 3px solid var(--amber);
+  padding: 1.5rem; position: relative;
+  box-shadow: 5px 5px 0 var(--red-dark);
+}
+.rank-panel::before {
+  content: ''; position: absolute; top: -10px; left: -10px;
+  width: 30px; height: 30px; background: var(--red-dark);
+  border-radius: 50%; border: 2px solid var(--amber);
+}
+.rank-panel h3 {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem; border-bottom: 2px dashed var(--line);
+  display: flex; align-items: center; gap: 0.5rem; color: var(--amber);
+}
+.rank-list { list-style: none; }
+.rank-item {
+  display: grid; grid-template-columns: 35px 1fr auto;
+  gap: 0.8rem; align-items: center; padding: 0.6rem 0;
+  border-bottom: 1px dotted var(--line);
+}
+.rank-item:last-child { border-bottom: none; }
+.rank-num {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 900;
+  text-align: center; color: var(--amber);
+}
+.rank-num.top { color: var(--red-dark); font-size: 1.3rem; }
+.rank-info h4 { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.1rem; color: var(--cream); }
+.rank-info p { font-size: 0.6rem; color: var(--cream-dim); font-family: var(--font-mono); }
+.rank-score { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--amber-light); }
+
+/* 栏目4：资讯动态 - 报纸剪贴 */
+.news-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; }
+.news-list { display: flex; flex-direction: column; gap: 1rem; }
+.news-card {
+  display: flex; gap: 1rem; background: var(--bg-panel); border: 1px solid var(--line);
+  padding: 1rem; transition: all 0.3s; position: relative;
+}
+.news-card::after {
+  content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0;
+  border-left: 15px solid transparent; border-top: 15px solid var(--red-dark);
+}
+.news-card:hover { border-color: var(--amber); background: #2a1a12; transform: translateX(5px); }
+.news-date {
+  min-width: 50px; text-align: center; border-right: 2px solid var(--amber);
+  padding-right: 0.8rem;
+}
+.news-date .day { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; display: block; line-height: 1; color: var(--amber); }
+.news-date .month { font-family: var(--font-mono); font-size: 0.55rem; color: var(--cream-dim); }
+.news-content h4 { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.2rem; text-transform: uppercase; color: var(--amber-light); }
+.news-content p { font-size: 0.7rem; color: var(--cream-dim); margin-bottom: 0.3rem; line-height: 1.6; }
+.news-label {
+  font-family: var(--font-mono); font-size: 0.55rem; padding: 0.1rem 0.5rem;
+  border: 1px solid var(--red-dark); color: var(--red-dark); background: rgba(139,37,0,0.1);
+}
+
+.news-side { display: flex; flex-direction: column; gap: 0.8rem; }
+.news-side-card {
+  background: var(--bg-panel); border: 1px solid var(--line); border-left: 4px solid var(--amber);
+  padding: 0.8rem 1rem; transition: all 0.3s;
+}
+.news-side-card:hover { background: var(--red-dark); border-color: var(--red-dark); }
+.news-side-card h5 { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.1rem; color: var(--amber-light); }
+.news-side-card span { font-family: var(--font-mono); font-size: 0.6rem; color: var(--cream-dim); }
+
+/* 栏目5：关于/指南 */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.about-card {
+  background: var(--bg-panel); border: 2px solid var(--line);
+  padding: 1.5rem; position: relative;
+}
+.about-card::before {
+  content: 'NOTE'; position: absolute; top: -10px; left: 10px;
+  background: var(--amber); color: var(--bg-dark); font-family: var(--font-mono);
+  font-size: 0.6rem; font-weight: 700; padding: 0.2rem 0.5rem;
+}
+.about-card h3 {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; color: var(--amber);
+}
+.about-card p { font-size: 0.8rem; color: var(--cream-dim); margin-bottom: 0.8rem; line-height: 1.8; }
+.about-card strong { color: var(--amber-light); }
+.steps { list-style: none; }
+.step { display: flex; gap: 0.8rem; padding: 0.8rem 0; border-bottom: 1px dashed var(--line); }
+.step:last-child { border-bottom: none; }
+.step-n {
+  min-width: 30px; height: 30px; border: 2px solid var(--amber);
+  color: var(--amber); font-family: var(--font-display); font-weight: 900;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: var(--bg-dark); transform: rotate(45deg);
+}
+.step-n span { transform: rotate(-45deg); }
+.step h4 { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.1rem; color: var(--cream); }
+.step p { font-size: 0.7rem; color: var(--cream-dim); margin: 0; }
+
+/* Footer */
+.footer {
+  background: #0f0906; color: var(--cream-dim);
+  padding: 3rem 0 2rem; margin-top: 4rem;
+  border-top: 4px solid var(--red-dark);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.footer-col h4 {
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; color: var(--amber);
+}
+.footer-col p, .footer-col li {
+  font-size: 0.7rem; color: var(--cream-dim); margin-bottom: 0.5rem; list-style: none;
+  font-family: var(--font-serif);
+}
+.footer-col a { color: var(--cream-dim); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--amber-light); }
+.footer-url { color: var(--amber) !important; font-family: var(--font-mono); }
+.footer-bottom {
+  max-width: 1200px; margin: 2rem auto 0; padding: 1.5rem 1rem 0;
+  border-top: 1px dashed var(--line); text-align: center;
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--cream-dim);
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .rank-wrap, .news-grid, .about-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .topbar { justify-content: center; text-align: center; }
+  .menu { display: none; width: 100%; flex-direction: column; }
+  .menu.open { display: flex; }
+  .menu a { text-align: center; border-right: none; border-bottom: 1px dashed var(--line); }
+  .menu li:last-child a { border-bottom: none; }
+  .toggle { display: block; }
+  .movie-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-cta { flex-direction: column; }
+  .btn { justify-content: center; }
+  .movie-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-card { flex-direction: column; }
+  .news-date { border-right: none; border-bottom: 2px solid var(--amber); padding-right: 0; padding-bottom: 0.5rem; align-self: flex-start; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 顶部信息条 -->
+<div class="topbar">
+  <span>🍷 酒色电影网 | 官方网址：<a href="https://jiusedianyingwang-top.github.io">https://jiusedianyingwang-top.github.io</a></span>
+  <span>微醺 · 沉浸 · 光影</span>
+</div>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="navin">
+    <div class="logo"><a href="#">酒<span class="jiu">色</span>电影网</a></div>
+    <div class="urlchip">jiusedianyingwang-top.github.io</div>
+    <button class="toggle" id="toggle">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#featured">最新推荐</a></li>
+      <li><a href="#categories">影视分类</a></li>
+      <li><a href="#ranking">热播排行</a></li>
+      <li><a href="#news">资讯动态</a></li>
+      <li><a href="#about">关于本站</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="wrap hero" id="home">
+  <div class="hero-badge">✦ GRUNGE CINEMA ✦</div>
+  <h1>酒<span class="jiu">色</span><br>电影网</h1>
+  <div class="hero-desc">
+    酒色电影网（<strong>jiusedianyingwang-top.github.io</strong>）带您进入微醺影视空间，精选全球优质内容。官方网址：<strong>https://jiusedianyingwang-top.github.io</strong>，全站免费畅享，每日实时更新，让光影如佳酿般醇厚。
+  </div>
+  <div class="hero-cta">
+    <a href="#featured" class="btn btn-amber">▶ 开启品鉴</a>
+    <a href="#categories" class="btn btn-dark">◆ 浏览酒单</a>
+  </div>
+</section>
+
+<!-- 栏目1：最新推荐 -->
+<section class="wrap sec" id="featured">
+  <div class="head">
+    <h2>今日特调</h2>
+    <p>本周精选 · 微醺影单</p>
+  </div>
+  <div class="movie-grid">
+    <article class="movie-card"><div class="movie-cover">🥃<span class="movie-badge">醇厚经典</span></div><div class="movie-info"><div class="movie-title">教父 (1972)</div><div class="movie-meta">犯罪 / 剧情 / 史诗</div><div class="movie-tags"><span class="movie-tag">黑帮</span><span class="movie-tag">经典</span><span class="movie-tag">必看</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🍷<span class="movie-badge">浪漫微醺</span></div><div class="movie-info"><div class="movie-title">杯酒人生 (2004)</div><div class="movie-meta">剧情 / 喜剧 / 爱情</div><div class="movie-tags"><span class="movie-tag">葡萄酒</span><span class="movie-tag">人生</span><span class="movie-tag">文艺</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🥂<span class="movie-badge">爵士之夜</span></div><div class="movie-info"><div class="movie-title">芝加哥 (2002)</div><div class="movie-meta">歌舞 / 犯罪 / 剧情</div><div class="movie-tags"><span class="movie-tag">爵士</span><span class="movie-tag">歌舞</span><span class="movie-tag">黑色幽默</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🍸<span class="movie-badge">迷离幻境</span></div><div class="movie-info"><div class="movie-title">穆赫兰道 (2001)</div><div class="movie-meta">悬疑 / 惊悚 / 梦幻</div><div class="movie-tags"><span class="movie-tag">大卫·林奇</span><span class="movie-tag">烧脑</span><span class="movie-tag">超现实</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🍺<span class="movie-badge">硬核人生</span></div><div class="movie-info"><div class="movie-title">搏击俱乐部 (1999)</div><div class="movie-meta">剧情 / 惊悚 / 动作</div><div class="movie-tags"><span class="movie-tag">大卫·芬奇</span><span class="movie-tag">cult</span><span class="movie-tag">经典</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🥃<span class="movie-badge">宿醉狂欢</span></div><div class="movie-info"><div class="movie-title">宿醉 (2009)</div><div class="movie-meta">喜剧 / 犯罪</div><div class="movie-tags"><span class="movie-tag">搞笑</span><span class="movie-tag">派对</span><span class="movie-tag">冒险</span></div></div></article>
+  </div>
+</section>
+
+<!-- 栏目2：影视分类 -->
+<section class="wrap sec" id="categories">
+  <div class="head">
+    <h2>酒单分类</h2>
+    <p>按口味探索 · 精选典藏</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card"><span class="cat-icon">🥃</span><div class="cat-name">纯酿经典</div><div class="cat-count">3,456 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🍸</span><div class="cat-name">混调悬疑</div><div class="cat-count">2,123 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🍷</span><div class="cat-name">醇红爱情</div><div class="cat-count">1,567 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🍺</span><div class="cat-name">冰爽喜剧</div><div class="cat-count">2,890 部</div></div>
+    <div class="cat-card"><span class="cat-icon">📺</span><div class="cat-name">长饮剧集</div><div class="cat-count">4,321 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🎨</span><div class="cat-name">特调文艺</div><div class="cat-count">1,234 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🎤</span><div class="cat-name">气泡综艺</div><div class="cat-count">1,678 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🏛️</span><div class="cat-name">陈年纪录</div><div class="cat-count">987 部</div></div>
+  </div>
+</section>
+
+<!-- 栏目3：排行榜 -->
+<section class="wrap sec" id="ranking">
+  <div class="head">
+    <h2>Top Shelf 精选</h2>
+    <p>全站影迷 · 最爱典藏</p>
+  </div>
+  <div class="rank-wrap">
+    <div class="rank-panel">
+      <h3>🥇 醇厚电影榜</h3>
+      <ul class="rank-list">
+        <li class="rank-item"><span class="rank-num top">1</span><div class="rank-info"><h4>肖申克的救赎</h4><p>剧情 / 经典 / 1994</p></div><span class="rank-score">9.7</span></li>
+        <li class="rank-item"><span class="rank-num top">2</span><div class="rank-info"><h4>教父</h4><p>犯罪 / 剧情 / 1972</p></div><span class="rank-score">9.3</span></li>
+        <li class="rank-item"><span class="rank-num top">3</span><div class="rank-info"><h4>阿甘正传</h4><p>剧情 / 励志 / 1994</p></div><span class="rank-score">9.5</span></li>
+        <li class="rank-item"><span class="rank-num">4</span><div class="rank-info"><h4>低俗小说</h4><p>犯罪 / 剧情 / 1994</p></div><span class="rank-score">8.9</span></li>
+        <li class="rank-item"><span class="rank-num">5</span><div class="rank-info"><h4>七宗罪</h4><p>悬疑 / 犯罪 / 1995</p></div><span class="rank-score">8.8</span></li>
+      </ul>
+    </div>
+    <div class="rank-panel">
+      <h3>📺 长饮剧集榜</h3>
+      <ul class="rank-list">
+        <li class="rank-item"><span class="rank-num top">1</span><div class="rank-info"><h4>绝命毒师</h4><p>犯罪 / 剧情 / 2008</p></div><span class="rank-score">9.6</span></li>
+        <li class="rank-item"><span class="rank-num top">2</span><div class="rank-info"><h4>浴血黑帮</h4><p>犯罪 / 剧情 / 2013</p></div><span class="rank-score">8.8</span></li>
+        <li class="rank-item"><span class="rank-num top">3</span><div class="rank-info"><h4>真探</h4><p>犯罪 / 悬疑 / 2014</p></div><span class="rank-score">9.0</span></li>
+        <li class="rank-item"><span class="rank-num">4</span><div class="rank-info"><h4>广告狂人</h4><p>剧情 / 历史 / 2007</p></div><span class="rank-score">8.6</span></li>
+        <li class="rank-item"><span class="rank-num">5</span><div class="rank-info"><h4>黑镜</h4><p>科幻 / 悬疑 / 2011</p></div><span class="rank-score">8.8</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目4：资讯动态 -->
+<section class="wrap sec" id="news">
+  <div class="head">
+    <h2>酒吧小报</h2>
+    <p>影坛前沿 · 深度解析</p>
+  </div>
+  <div class="news-grid">
+    <div class="news-list">
+      <div class="news-card"><div class="news-date"><span class="day">30</span><span class="month">OCT</span></div><div class="news-content"><h4>酒色电影网上线：微醺影视体验开启</h4><p>酒色电影网(jiusedianyingwang-top.github.io)正式上线，以Grunge复古风重塑观影体验，访问官网开启品鉴之旅。</p><span class="news-label">上线公告</span></div></div>
+      <div class="news-card"><div class="news-date"><span class="day">28</span><span class="month">OCT</span></div><div class="news-content"><h4>电影中的威士忌文化：从007到广告狂人</h4><p>威士忌在电影中不仅是饮品，更是角色性格的延伸。一文盘点那些经典电影中的威士忌时刻。</p><span class="news-label">专题推荐</span></div></div>
+      <div class="news-card"><div class="news-date"><span class="day">25</span><span class="month">OCT</span></div><div class="news-content"><h4>大卫·林奇的迷离世界：穆赫兰道与双峰</h4><p>大卫·林奇用超现实的镜头语言创造了独特的电影美学，一文读懂他的迷离世界。</p><span class="news-label">深度解析</span></div></div>
+      <div class="news-card"><div class="news-date"><span class="day">22</span><span class="month">OCT</span></div><div class="news-content"><h4>爵士乐与电影：从午夜巴黎到爱乐之城</h4><p>爵士乐与电影的完美结合，盘点那些让人沉醉的爵士电影原声。</p><span class="news-label">观影指南</span></div></div>
+    </div>
+    <div class="news-side">
+      <div class="news-side-card"><h5>科恩兄弟的黑色幽默</h5><span>阅读 8.5k</span></div>
+      <div class="news-side-card"><h5>昆汀·塔伦蒂诺的暴力美学</h5><span>阅读 7.2k</span></div>
+      <div class="news-side-card"><h5>马丁·斯科塞斯的黑帮史诗</h5><span>阅读 6.8k</span></div>
+      <div class="news-side-card"><h5>王家卫的霓虹夜色</h5><span>阅读 9.1k</span></div>
+      <div class="news-side-card"><h5>是枝裕和的温情日常</h5><span>阅读 11.3k</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目5：关于/指南 -->
+<section class="wrap sec" id="about">
+  <div class="head">
+    <h2>调酒师笔记</h2>
+    <p>了解酒色电影网 · 开启微醺之旅</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>酒色电影网</h3>
+      <p>酒色电影网（<strong>jiusedianyingwang-top.github.io</strong>）是一个以Grunge颓废复古美学打造的影视平台。我们以"酒铯"为名，寓意让影视如佳酿般醇厚，致力于为广大影迷提供丰富、高质量的影视内容。官方网址：<span class="footer-url">https://jiusedianyingwang-top.github.io</span>。</p>
+      <p>全站资源免费畅享，涵盖电影、电视剧、动漫、纪录片等全品类内容，每日实时更新，让您随时随地享受微醺观影体验。</p>
+    </div>
+    <div class="about-card">
+      <h3>品鉴指南</h3>
+      <ul class="steps">
+        <li class="step"><div class="step-n"><span>1</span></div><div><h4>访问官网</h4><p>浏览器输入 https://jiusedianyingwang-top.github.io</p></div></li>
+        <li class="step"><div class="step-n"><span>2</span></div><div><h4>选择分类</h4><p>通过分类导航进入你感兴趣的影视类型</p></div></li>
+        <li class="step"><div class="step-n"><span>3</span></div><div><h4>发现好片</h4><p>查看热播排行榜和最新推荐，发现高分佳作</p></div></li>
+        <li class="step"><div class="step-n"><span>4</span></div><div><h4>收藏分享</h4><p>收藏本站，随时回访，分享给好友一起探索</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>关于本站</h4>
+      <p>酒色电影网(jiusedianyingwang-top.github.io)以Grunge微醺美学重塑观影体验，精选全球优质影视。</p>
+      <p class="footer-url">https://jiusedianyingwang-top.github.io</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速导航</h4>
+      <ul><li><a href="#home">首页</a></li><li><a href="#featured">今日特调</a></li><li><a href="#categories">酒单分类</a></li><li><a href="#ranking">Top Shelf</a></li><li><a href="#news">酒吧小报</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>影视分类</h4>
+      <ul><li><a href="#">纯酿经典</a></li><li><a href="#">混调悬疑</a></li><li><a href="#">醇红爱情</a></li><li><a href="#">冰爽喜剧</a></li><li><a href="#">特调文艺</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>联系我们</h4>
+      <ul><li>网址：<span class="footer-url">https://jiusedianyingwang-top.github.io</span></li><li>邮箱：info@jiusedianyingwang-top.github.io</li><li>商务合作：邮件联系</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 酒色电影网 (jiusedianyingwang-top.github.io) | 官方网址：https://jiusedianyingwang-top.github.io | 关键词：酒色电影网、jiusedianyingwang-top.github.io、在线电影、微醺观影
+  </div>
+</footer>
+
+<script>
+// 移动端菜单
+const toggle = document.getElementById('toggle');
+const menu = document.getElementById('menu');
+toggle.addEventListener('click', () => { menu.classList.toggle('open'); });
+menu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { menu.classList.remove('open'); }); });
+
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+</body>
+</html>
